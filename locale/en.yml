@@ -33,6 +33,9 @@ stezkoy-audex:
     position_widget: "Widget (forum-widgets-core)"
     badge_widget_off: "widget — off"
     badge_widget_off_help: "forum-widgets-core is disabled — this block is not rendered anywhere until it is enabled again."
+    badge_head_help: "The code is inserted into the page head on the server."
+    badge_body_help: "The code is inserted before the closing body tag on the server."
+    badge_widget_help: "The code is rendered by the Audex widget (forum-widgets-core); its zone is configured in the widget editor."
     enabled_switch: Enabled
     enabled_switch_help: Toggle to turn this block on or off.
     code_label: Script Code

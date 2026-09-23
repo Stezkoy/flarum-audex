@@ -33,6 +33,9 @@ stezkoy-audex:
     position_widget: "Виджет (forum-widgets-core)"
     badge_widget_off: "widget — выкл"
     badge_widget_off_help: "forum-widgets-core отключён — блок нигде не показывается, пока расширение не будет снова включено."
+    badge_head_help: "Код вставляется на сервере в начало страницы (head)."
+    badge_body_help: "Код вставляется на сервере перед закрывающим тегом body."
+    badge_widget_help: "Код показывается через виджет Audex (forum-widgets-core); зона настраивается в редакторе виджетов."
     enabled_switch: Включён
     enabled_switch_help: Переключите, чтобы включить или выключить этот блок.
     code_label: Код скрипта

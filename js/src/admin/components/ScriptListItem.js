@@ -12,12 +12,23 @@ export default class ScriptListItem extends Component {
     // A "widget" block renders nowhere while fof/forum-widgets-core is
     // disabled — mark the badge accordingly so the admin notices.
     const widgetOff = script.position === 'widget' && !flarum.extensions['fof-forum-widgets-core'];
-    const badge =
-      script.position === 'foot'
-        ? 'body'
-        : widgetOff
-        ? extractText(app.translator.trans(PREFIX + 'badge_widget_off'))
-        : script.position;
+
+    let badge;
+    let badgeHelpKey;
+
+    if (script.position === 'foot') {
+      badge = 'body';
+      badgeHelpKey = 'badge_body_help';
+    } else if (widgetOff) {
+      badge = extractText(app.translator.trans(PREFIX + 'badge_widget_off'));
+      badgeHelpKey = 'badge_widget_off_help';
+    } else if (script.position === 'widget') {
+      badge = 'widget';
+      badgeHelpKey = 'badge_widget_help';
+    } else {
+      badge = 'head';
+      badgeHelpKey = 'badge_head_help';
+    }
 
     return m('li.AudexScriptListItem' + (script.enabled ? '' : '.disabled'), [
       m('.AudexScriptListItem-main', [
@@ -26,9 +37,7 @@ export default class ScriptListItem extends Component {
           m(
             'span.AudexScriptListItem-position' + (widgetOff ? '.AudexScriptListItem-position--off' : ''),
             {
-              title: widgetOff
-                ? extractText(app.translator.trans(PREFIX + 'badge_widget_off_help'))
-                : null,
+              title: extractText(app.translator.trans(PREFIX + badgeHelpKey)),
             },
             badge
           ),
