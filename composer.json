@@ -1,7 +1,7 @@
 {
     "name": "stezkoy/flarum-audex",
     "type": "flarum-extension",
-    "description": "Per-block ad scripts in <head> or before </body>, hidden from selected users and groups.",
+    "description": "Per-block script injection into the page head or before the closing body tag, omitted for selected users and groups. Ads, analytics, widgets — any HTML/JS.",
     "license": "MIT",
     "authors": [
         {

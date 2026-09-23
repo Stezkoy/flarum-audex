@@ -2,11 +2,11 @@
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
-A [Flarum](https://flarum.org) extension that manages **ad script blocks** and injects them into the forum pages **on the server** — while completely omitting them for excluded users and group members.
+A [Flarum](https://flarum.org) extension that manages **script blocks** and injects them into the forum pages **on the server** — while completely omitting them for excluded users and group members. Advertising, analytics, widgets — any HTML/JS.
 
 ## Features
 
-- Manage multiple ad script blocks (any HTML/JS snippet: AdSense, Yandex RSYA, etc.).
+- Manage multiple script blocks (any HTML/JS snippet: ad networks, analytics, widgets, etc.).
 - Per-block placement: inside `<head>` or before the closing `</body>`.
 - Per-block on/off switch, reordering.
 - **Exclusions**: users listed explicitly or members of the selected groups never receive the scripts — the code is not present in their HTML at all, so nothing is loaded or executed in their browser.
@@ -23,9 +23,9 @@ composer require stezkoy/flarum-audex
 
 1. Enable the extension.
 2. Open its settings page in the admin panel.
-3. Add a block: paste the full snippet **exactly as provided by your ad network** (including the `<script>` tags), choose the placement, enable it.
+3. Add a block: paste your snippet exactly as provided (including the script tags), choose the placement, enable it.
 4. Configure exclusions: pick groups and/or specific users.
-5. Remove the ad code you previously inserted manually — Audex takes care of it now.
+5. Remove the code you previously inserted manually — Audex takes care of it now.
 
 The extension is called ad scripts, so the rule is simple:
 

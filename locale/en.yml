@@ -2,15 +2,15 @@ stezkoy-audex:
   admin:
     heading: Audex
     help_block: >-
-      Audex lets you manage advertising script blocks. Each block is a piece of
-      HTML/JS (usually a script tag from your ad network) that Audex injects
-      into the page on the server — and completely omits for excluded users and
-      group members, so the code is never even loaded in their browser.
-    scripts_section: Ad Script Blocks
+      Audex lets you manage script blocks — advertising, analytics, widgets,
+      any HTML/JS. Each block is injected into the page on the server and
+      completely omitted for excluded users and group members, so the code is
+      never even loaded in their browser.
+    scripts_section: Script Blocks
     scripts_section_help: >-
-      Paste the full snippet exactly as provided by your ad network, including
-      its script tags. Blocks marked "head" are placed inside the page head;
-      blocks marked "foot" are placed before the closing body tag.
+      Paste the full snippet exactly as provided, including its script tags.
+      Blocks marked "head" are placed inside the page head; blocks marked
+      "foot" are placed before the closing body tag.
     section_counter: "{enabled} of {total} enabled"
     empty: No script blocks yet. Click "Add block" to create one.
     add_button: Add Block
@@ -41,13 +41,13 @@ stezkoy-audex:
 
     exclusions_section: Exclusions
     exclusions_section_help: >-
-      Users listed here and members of the selected groups will not receive any
-      ad scripts at all. Guests always see ads.
+      Users listed here and members of the selected groups will not receive
+      any scripts at all. Exclusions never apply to guests.
     groups_label: Excluded Groups
-    groups_help: Members of these groups will not receive ad scripts.
+    groups_help: Members of these groups will not receive scripts.
     groups_empty: No groups available.
     users_label: Excluded Users
-    users_help: These specific users will not receive ad scripts regardless of their groups.
+    users_help: These specific users will not receive scripts regardless of their groups.
     users_add_button: Add Users
     users_empty: No users excluded.
     users_search_placeholder: Search users…
@@ -61,7 +61,7 @@ stezkoy-audex:
     error_block_json: "Block {block} is malformed."
     error_name: "Block {block}: the name must be a string of up to 100 characters."
     error_name_html: "Block {block}: the name must not contain angle brackets or double dashes."
-    error_code_empty: "Block {block}: the script code must not be empty."
+    error_code_empty: "Block {block}: the code must not be empty."
     error_code_too_long: "Block {block}: the code exceeds the limit of {max} bytes."
     error_position: "Block {block}: the placement must be \"head\" or \"foot\"."
     error_enabled: "Block {block}: \"enabled\" must be true or false."
