@@ -1,5 +1,5 @@
 import app from 'flarum/forum/app';
-import registerWidget from './registerWidget';
+import registerWidget from '../common/registerWidget';
 
 app.initializers.add('stezkoy-audex', () => {
   registerWidget(app);
