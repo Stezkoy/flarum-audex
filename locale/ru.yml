@@ -27,7 +27,7 @@ stezkoy-audex:
     name_placeholder: например, AdSense в шапке
     name_help: Короткая служебная подпись. HTML-символы запрещены.
     position_label: Размещение
-    position_help: head — внутри <head>. foot — перед закрывающим </body>.
+    position_help: "head — внутри <head>. foot — перед закрывающим </body>."
     position_head: "<head>"
     position_foot: "Конец страницы (</body>)"
     enabled_switch: Включён
@@ -52,7 +52,7 @@ stezkoy-audex:
     users_search_placeholder: Поиск пользователей…
     users_selected: "Выбрано: {count}"
 
-    confirm_delete: Удалить блок «{name}»? Это действие необратимо.
+    confirm_delete: "Удалить блок «{name}»? Это действие необратимо."
     saved: Настройки сохранены.
 
     error_json: Значение настройки не является корректным JSON.
