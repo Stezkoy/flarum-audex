@@ -1,6 +1,7 @@
 import Component from 'flarum/common/Component';
 import Switch from 'flarum/common/components/Switch';
 import Button from 'flarum/common/components/Button';
+import extractText from 'flarum/common/utils/extractText';
 
 const PREFIX = 'stezkoy-audex.admin.';
 
@@ -8,13 +9,28 @@ export default class ScriptListItem extends Component {
   view() {
     const { script, loading, ontoggle, onedit, onmoveup, onmovedown, ondelete } = this.attrs;
 
+    // A "widget" block renders nowhere while fof/forum-widgets-core is
+    // disabled — mark the badge accordingly so the admin notices.
+    const widgetOff = script.position === 'widget' && !flarum.extensions['fof-forum-widgets-core'];
+    const badge =
+      script.position === 'foot'
+        ? 'body'
+        : widgetOff
+        ? extractText(app.translator.trans(PREFIX + 'badge_widget_off'))
+        : script.position;
+
     return m('li.AudexScriptListItem' + (script.enabled ? '' : '.disabled'), [
       m('.AudexScriptListItem-main', [
         m('.AudexScriptListItem-name', [
           script.name || '—',
           m(
-            'span.AudexScriptListItem-position',
-            script.position === 'foot' ? 'body' : script.position
+            'span.AudexScriptListItem-position' + (widgetOff ? '.AudexScriptListItem-position--off' : ''),
+            {
+              title: widgetOff
+                ? extractText(app.translator.trans(PREFIX + 'badge_widget_off_help'))
+                : null,
+            },
+            badge
           ),
         ]),
         m('.AudexScriptListItem-code', script.code || ''),

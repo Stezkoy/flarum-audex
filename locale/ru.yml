@@ -31,6 +31,8 @@ stezkoy-audex:
     position_head: Начало страницы (head)
     position_foot: Конец страницы (body)
     position_widget: "Виджет (forum-widgets-core)"
+    badge_widget_off: "виджет — выкл"
+    badge_widget_off_help: "forum-widgets-core отключён — блок нигде не показывается, пока расширение не будет снова включено."
     enabled_switch: Включён
     enabled_switch_help: Переключите, чтобы включить или выключить этот блок.
     code_label: Код скрипта

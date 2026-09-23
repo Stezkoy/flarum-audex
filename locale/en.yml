@@ -31,6 +31,8 @@ stezkoy-audex:
     position_head: Page head
     position_foot: End of body
     position_widget: "Widget (forum-widgets-core)"
+    badge_widget_off: "widget — off"
+    badge_widget_off_help: "forum-widgets-core is disabled — this block is not rendered anywhere until it is enabled again."
     enabled_switch: Enabled
     enabled_switch_help: Toggle to turn this block on or off.
     code_label: Script Code
