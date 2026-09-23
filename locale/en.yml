@@ -34,9 +34,10 @@ stezkoy-audex:
     enabled_switch_help: Toggle to turn this block on or off.
     code_label: Script Code
     code_help: >-
-      Pasted verbatim into the page. Use the full snippet from your ad network.
-      Inside JavaScript strings, escape the closing script tag with a backslash
-      before the slash.
+      Pasted into the page verbatim. If the code contains no script tag, it is
+      treated as plain JavaScript and wrapped into one automatically. Inside
+      JavaScript strings, escape the closing script tag with a backslash before
+      the slash.
 
     exclusions_section: Exclusions
     exclusions_section_help: >-

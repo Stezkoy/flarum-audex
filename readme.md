@@ -27,6 +27,11 @@ composer require stezkoy/flarum-audex
 4. Configure exclusions: pick groups and/or specific users.
 5. Remove the ad code you previously inserted manually — Audex takes care of it now.
 
+The extension is called ad scripts, so the rule is simple:
+
+- **Full snippet** (with its own `<script>` tags) → inserted verbatim.
+- **Raw JavaScript** (no script tag) → automatically wrapped in a `<script>` element.
+
 > **Note:** inside JavaScript strings write `</script>` as `<\/script>`, otherwise the browser will terminate the script tag early (this is standard HTML parsing behaviour, not an extension limitation).
 
 ## How exclusion works

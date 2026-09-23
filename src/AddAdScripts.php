@@ -48,10 +48,19 @@ class AddAdScripts
                 continue;
             }
 
+            $code = $script['code'];
+
+            // A snippet without any script tag is treated as plain JavaScript
+            // and wrapped — otherwise the browser would render it as visible
+            // text. Full snippets (with their own script tags) pass verbatim.
+            if (stripos($code, '<script') === false) {
+                $code = '<script>' . $code . '</script>';
+            }
+
             // The code is inserted verbatim (the admin is a trusted role, just
             // like with Flarum's own custom-header feature). Only the comment
             // label is escaped so it can never break out of the HTML comment.
-            $html = '<!-- audex: ' . e($script['name']) . ' -->' . "\n" . $script['code'];
+            $html = '<!-- audex: ' . e($script['name']) . ' -->' . "\n" . $code;
 
             if ($script['position'] === 'foot') {
                 $document->foot[] = $html;

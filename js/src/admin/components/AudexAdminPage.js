@@ -1,6 +1,7 @@
 import ExtensionPage from 'flarum/admin/components/ExtensionPage';
 import Button from 'flarum/common/components/Button';
 import Checkbox from 'flarum/common/components/Checkbox';
+import GroupBadge from 'flarum/common/components/GroupBadge';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 import UserSelectionModal from 'flarum/common/components/UserSelectionModal';
 import saveSettings from 'flarum/admin/utils/saveSettings';
@@ -127,9 +128,7 @@ export default class AudexAdminPage extends ExtensionPage {
                       disabled: this.saving,
                       onchange: (checked) => this.toggleGroup(group.id(), checked),
                     }, [
-                      group.color()
-                        ? m('span.AudexAdmin-groupDot', { style: { background: group.color() } })
-                        : null,
+                      GroupBadge.component({ group, label: null }),
                       group.namePlural(),
                     ])
                   )
