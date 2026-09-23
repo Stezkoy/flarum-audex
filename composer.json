@@ -1,0 +1,37 @@
+{
+    "name": "stezkoy/flarum-audex",
+    "type": "flarum-extension",
+    "description": "Per-block ad scripts in <head> or before </body>, hidden from selected users and groups.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stezkoy",
+            "email": "stezko@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/Stezkoy/flarum-audex",
+        "issues": "https://github.com/Stezkoy/flarum-audex/issues"
+    },
+    "require": {
+        "flarum/core": "^2.0",
+        "php": "^8.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Stezkoy\\FlarumAudex\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Audex",
+            "category": "feature",
+            "icon": {
+                "name": "fas fa-bullhorn",
+                "backgroundColor": "#d9534f",
+                "color": "#fff"
+            }
+        }
+    }
+}

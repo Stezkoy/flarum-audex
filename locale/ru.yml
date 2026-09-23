@@ -1,0 +1,73 @@
+stezkoy-audex:
+  admin:
+    heading: Audex
+    help_block: >-
+      Audex управляет рекламными скрипт-блоками. Каждый блок — фрагмент HTML/JS
+      (обычно тег <script> рекламной сети), который Audex вставляет в страницу
+      на стороне сервера — и полностью пропускает для исключённых пользователей
+      и участников выбранных групп, так что код даже не загружается в их браузере.
+    scripts_section: Рекламные скрипт-блоки
+    scripts_section_help: >-
+      Вставляйте полный сниппет в том виде, как его дала рекламная сеть (включая
+      теги <script> и </script>). Блоки с размещением «head» попадают в <head>,
+      блоки «foot» — перед закрывающим </body>.
+    section_counter: Включено {enabled} из {total}
+    empty: Скрипт-блоков пока нет. Нажмите «Добавить блок», чтобы создать первый.
+    add_button: Добавить блок
+    save_button: Сохранить
+    cancel_button: Отмена
+    delete_button: Удалить
+    edit_button: Редактировать
+    move_up: Переместить выше
+    move_down: Переместить ниже
+
+    modal_title_create: Добавить скрипт-блок
+    modal_title_edit: Редактировать скрипт-блок
+    name_label: Имя блока
+    name_placeholder: например, AdSense в шапке
+    name_help: Короткая служебная подпись. HTML-символы запрещены.
+    position_label: Размещение
+    position_help: head — внутри <head>. foot — перед закрывающим </body>.
+    position_head: "<head>"
+    position_foot: "Конец страницы (</body>)"
+    enabled_switch: Включён
+    enabled_switch_help: Переключите, чтобы включить или выключить этот блок.
+    code_label: Код скрипта
+    code_placeholder: "<script async src=\"https://example.com/ad.js\"></script>"
+    code_help: >-
+      Вставляется в страницу «как есть». Содержит полный сниппет вашей рекламной
+      сети. Внутри JS-строк пишите </script> как <\/script>.
+
+    exclusions_section: Исключения
+    exclusions_section_help: >-
+      Перечисленные пользователи и участники выбранных групп вообще не получат
+      рекламные скрипты. Гости видят рекламу всегда.
+    groups_label: Исключённые группы
+    groups_help: Участники этих групп не будут получать рекламные скрипты.
+    groups_empty: Нет доступных групп.
+    users_label: Исключённые пользователи
+    users_help: Эти конкретные пользователи не будут получать рекламные скрипты независимо от своих групп.
+    users_add_button: Добавить пользователей
+    users_empty: Пользователи не исключены.
+    users_search_placeholder: Поиск пользователей…
+    users_selected: "Выбрано: {count}"
+
+    confirm_delete: Удалить блок «{name}»? Это действие необратимо.
+    saved: Настройки сохранены.
+
+    error_json: Значение настройки не является корректным JSON.
+    error_too_many: "Слишком много скрипт-блоков — лимит {count}."
+    error_block_json: "Блок {block} имеет неверный формат."
+    error_name: "Блок {block}: имя должно быть строкой не длиннее 100 символов."
+    error_name_html: "Блок {block}: имя не должно содержать символы <, > и --."
+    error_code_empty: "Блок {block}: код скрипта не может быть пустым."
+    error_code_too_long: "Блок {block}: код превышает лимит {max} байт."
+    error_position: "Блок {block}: размещение должно быть \"head\" или \"foot\"."
+    error_enabled: "Блок {block}: поле \"enabled\" должно быть true или false."
+    excluded_users:
+      error_too_many: Слишком много исключённых пользователей — лимит 1000.
+      error_invalid: "Неверная запись в списке исключённых пользователей (позиция {index})."
+    excluded_groups:
+      error_too_many: Слишком много исключённых групп — лимит 1000.
+      error_invalid: "Неверная запись в списке исключённых групп (позиция {index})."
+    request_error: Не удалось сохранить настройки. Проверьте введённые данные и попробуйте снова.

@@ -1,0 +1,9 @@
+/vendor/
+node_modules/
+.jsconfig.json
+composer.lock
+yarn.lock
+npm-shrinkwrap.json
+package-lock.json
+.DS_Store
+Thumbs.db
