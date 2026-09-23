@@ -29,7 +29,7 @@
             "category": "feature",
             "icon": {
                 "name": "fas fa-bullhorn",
-                "backgroundColor": "#d9534f",
+                "backgroundColor": "#00a185",
                 "color": "#fff"
             }
         }
