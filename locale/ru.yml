@@ -27,9 +27,10 @@ stezkoy-audex:
     name_placeholder: например, AdSense в шапке
     name_help: Короткая служебная подпись. Угловые скобки и двойные дефисы запрещены.
     position_label: Размещение
-    position_help: "head — в начале страницы (head). foot — перед закрывающим тегом body."
+    position_help: "head — в начале страницы (head). foot — перед закрывающим тегом body. widget — показывается через виджет forum-widgets-core; зона настраивается в его редакторе."
     position_head: Начало страницы (head)
     position_foot: Конец страницы (body)
+    position_widget: "Виджет (forum-widgets-core)"
     enabled_switch: Включён
     enabled_switch_help: Переключите, чтобы включить или выключить этот блок.
     code_label: Код скрипта

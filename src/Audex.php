@@ -45,10 +45,12 @@ final class Audex
                 continue;
             }
 
+            $position = $item['position'] ?? null;
+
             $blocks[] = [
                 'name' => is_string($item['name'] ?? null) ? $item['name'] : '',
                 'code' => is_string($item['code'] ?? null) ? $item['code'] : '',
-                'position' => ($item['position'] ?? null) === 'foot' ? 'foot' : 'head',
+                'position' => in_array($position, ['head', 'foot', 'widget'], true) ? $position : 'head',
                 'enabled' => ($item['enabled'] ?? null) === true,
             ];
         }

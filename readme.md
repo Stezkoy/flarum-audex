@@ -7,7 +7,7 @@ A [Flarum](https://flarum.org) extension that manages **script blocks** and inje
 ## Features
 
 - Manage multiple script blocks (any HTML/JS snippet: ad networks, analytics, widgets, etc.).
-- Per-block placement: inside `<head>` or before the closing `</body>`.
+- Per-block placement: inside `<head>`, before the closing `</body>`, or in a **widget zone** via the optional [fof/forum-widgets-core](https://github.com/FriendsOfFlarum/forum-widgets-core) integration.
 - Per-block on/off switch, reordering.
 - **Exclusions**: users listed explicitly or members of the selected groups never receive the scripts — the code is not present in their HTML at all, so nothing is loaded or executed in their browser.
 - Guests always see ads (by design).

@@ -27,9 +27,10 @@ stezkoy-audex:
     name_placeholder: e.g. AdSense header
     name_help: A short internal label. Angle brackets and double dashes are not allowed.
     position_label: Placement
-    position_help: "head — inside the page head. foot — before the closing body tag."
+    position_help: "head — inside the page head. foot — before the closing body tag. widget — rendered by the forum-widgets-core widget; its zone is configured in the widget editor."
     position_head: Page head
     position_foot: End of body
+    position_widget: "Widget (forum-widgets-core)"
     enabled_switch: Enabled
     enabled_switch_help: Toggle to turn this block on or off.
     code_label: Script Code

@@ -99,7 +99,7 @@ class AudexSettingsRules
                 ]));
             }
 
-            if (($item['position'] ?? null) !== null && ! in_array($item['position'], ['head', 'foot'], true)) {
+            if (($item['position'] ?? null) !== null && ! in_array($item['position'], ['head', 'foot', 'widget'], true)) {
                 $v->errors()->add($key, $this->trans('error_position', ['block' => $label]));
             }
 

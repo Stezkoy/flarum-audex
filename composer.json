@@ -18,6 +18,9 @@
         "flarum/core": "^2.0",
         "php": "^8.3"
     },
+    "suggest": {
+        "fof/forum-widgets-core": "Enables the 'Widget' placement (blocks rendered in fof widget zones)"
+    },
     "autoload": {
         "psr-4": {
             "Stezkoy\\FlarumAudex\\": "src/"

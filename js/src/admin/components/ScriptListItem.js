@@ -12,7 +12,10 @@ export default class ScriptListItem extends Component {
       m('.AudexScriptListItem-main', [
         m('.AudexScriptListItem-name', [
           script.name || '—',
-          m('span.AudexScriptListItem-position', script.position === 'foot' ? 'body' : 'head'),
+          m(
+            'span.AudexScriptListItem-position',
+            script.position === 'foot' ? 'body' : script.position
+          ),
         ]),
         m('.AudexScriptListItem-code', script.code || ''),
       ]),

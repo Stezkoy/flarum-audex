@@ -13,9 +13,11 @@ namespace Stezkoy\FlarumAudex;
 
 use Flarum\Extend;
 use Flarum\Settings\SettingsValidator;
+use Stezkoy\FlarumAudex\Api\Controller\WidgetContentController;
 
 return [
     (new Extend\Frontend('forum'))
+        ->js(__DIR__ . '/js/dist/forum.js')
         ->content(AddAdScripts::class),
 
     (new Extend\Frontend('admin'))
@@ -33,4 +35,16 @@ return [
     // (POST /api/settings runs core's SettingsValidator for every key).
     (new Extend\Validator(SettingsValidator::class))
         ->configure(AudexSettingsRules::class),
+
+    // Optional forum-widgets-core integration ("widget" placement): the
+    // content endpoint only exists while that extension is enabled. The
+    // frontend registers the widget itself with a runtime guard, so it stays
+    // silent when fof/forum-widgets-core is absent.
+    (new Extend\Conditional())
+        ->whenExtensionEnabled('fof-forum-widgets-core', function () {
+            return [
+                (new Extend\Routes('api'))
+                    ->get('/audex/widget', 'audex.widget', WidgetContentController::class),
+            ];
+        }),
 ];

@@ -12,6 +12,7 @@
 namespace Stezkoy\FlarumAudex;
 
 use Flarum\Settings\SettingsRepositoryInterface;
+use Flarum\User\User;
 
 class SettingsProvider
 {
@@ -28,6 +29,20 @@ class SettingsProvider
     }
 
     /**
+     * @return array<int, array{name: string, code: string}>
+     */
+    public function widgetBlocks(): array
+    {
+        return array_values(array_map(
+            fn (array $script) => ['name' => $script['name'], 'code' => $script['code']],
+            array_filter(
+                $this->scripts(),
+                fn (array $script) => $script['position'] === 'widget' && $script['enabled'] && $script['code'] !== ''
+            )
+        ));
+    }
+
+    /**
      * @return array<int, int>
      */
     public function excludedUserIds(): array
@@ -41,5 +56,24 @@ class SettingsProvider
     public function excludedGroupIds(): array
     {
         return Audex::parseIds($this->settings->get(Audex::EXCLUDED_GROUPS));
+    }
+
+    /**
+     * Whether the actor must not receive any scripts at all.
+     */
+    public function isExcluded(User $actor): bool
+    {
+        // Guests always see scripts (by design).
+        if ($actor->isGuest()) {
+            return false;
+        }
+
+        if (in_array($actor->id, $this->excludedUserIds(), true)) {
+            return true;
+        }
+
+        $actorGroupIds = $actor->groups->pluck('id')->all();
+
+        return count(array_intersect($actorGroupIds, $this->excludedGroupIds())) > 0;
     }
 }

@@ -13,7 +13,6 @@ namespace Stezkoy\FlarumAudex;
 
 use Flarum\Frontend\Document;
 use Flarum\Http\RequestUtil;
-use Flarum\User\User;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
@@ -22,6 +21,11 @@ use Psr\Http\Message\ServerRequestInterface;
  *
  * Excluded users never receive the scripts at all — nothing is loaded,
  * nothing is executed in their browser.
+ *
+ * Also publishes payload flags used by the optional forum-widgets-core
+ * integration ("widget" placement): the widget is disabled client-side for
+ * excluded users, and the widget content itself is served by
+ * WidgetContentController with the same exclusion rules.
  */
 class AddAdScripts
 {
@@ -32,19 +36,31 @@ class AddAdScripts
     public function __invoke(Document $document, ServerRequestInterface $request): void
     {
         $scripts = $this->settings->scripts();
-
-        if (count($scripts) === 0) {
-            return;
-        }
-
         $actor = RequestUtil::getActor($request);
+        $excluded = $this->settings->isExcluded($actor);
 
-        if ($this->isExcluded($actor)) {
+        // Flags for the forum-widgets-core integration. Cheap scalars; the
+        // widget JS reads them regardless of whether any script is configured.
+        $widgetBlocks = $excluded ? [] : $this->settings->widgetBlocks();
+
+        $document->payload['stezkoy-audex.excluded'] = $excluded;
+        $document->payload['stezkoy-audex.widgetBlocks'] = count($widgetBlocks);
+        // Revision of the widget content, used as a cache-busting query param.
+        $document->payload['stezkoy-audex.widgetRev'] = $widgetBlocks
+            ? substr(sha1(json_encode($widgetBlocks)), 0, 12)
+            : '';
+
+        if ($excluded) {
             return;
         }
 
         foreach ($scripts as $script) {
             if (! $script['enabled'] || $script['code'] === '') {
+                continue;
+            }
+
+            // "widget" blocks are served by WidgetContentController instead.
+            if ($script['position'] === 'widget') {
                 continue;
             }
 
@@ -68,21 +84,5 @@ class AddAdScripts
                 $document->head[] = $html;
             }
         }
-    }
-
-    protected function isExcluded(User $actor): bool
-    {
-        // Guests always see ads (by design).
-        if ($actor->isGuest()) {
-            return false;
-        }
-
-        if (in_array($actor->id, $this->settings->excludedUserIds(), true)) {
-            return true;
-        }
-
-        $actorGroupIds = $actor->groups->pluck('id')->all();
-
-        return count(array_intersect($actorGroupIds, $this->settings->excludedGroupIds())) > 0;
     }
 }

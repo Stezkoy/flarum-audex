@@ -56,10 +56,7 @@ export default class ScriptModal extends Modal {
             m('label', app.translator.trans(PREFIX + 'position_label')),
             Select.component({
               value: this.position,
-              options: {
-                head: extractText(app.translator.trans(PREFIX + 'position_head')),
-                foot: extractText(app.translator.trans(PREFIX + 'position_foot')),
-              },
+              options: this.positionOptions(),
               onchange: (value) => (this.position = value),
             }),
             m('p.helpText', app.translator.trans(PREFIX + 'position_help')),
@@ -108,6 +105,21 @@ export default class ScriptModal extends Modal {
         ]
       ),
     ]);
+  }
+
+  positionOptions() {
+    const options = {
+      head: extractText(app.translator.trans(PREFIX + 'position_head')),
+      foot: extractText(app.translator.trans(PREFIX + 'position_foot')),
+    };
+
+    // The "widget" placement exists only with fof/forum-widgets-core enabled.
+    // Always offered when editing a block that already uses it.
+    if (flarum.extensions['fof-forum-widgets-core'] || this.position === 'widget') {
+      options.widget = extractText(app.translator.trans(PREFIX + 'position_widget'));
+    }
+
+    return options;
   }
 
   onsubmit(e) {
