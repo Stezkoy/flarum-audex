@@ -3,14 +3,14 @@ stezkoy-audex:
     heading: Audex
     help_block: >-
       Audex lets you manage advertising script blocks. Each block is a piece of
-      HTML/JS (usually a <script> tag from your ad network) that Audex injects
+      HTML/JS (usually a script tag from your ad network) that Audex injects
       into the page on the server — and completely omits for excluded users and
       group members, so the code is never even loaded in their browser.
     scripts_section: Ad Script Blocks
     scripts_section_help: >-
-      Paste the full snippet exactly as provided by your ad network (including
-      the <script> and </script> tags). Blocks marked "head" are placed in
-      <head>, blocks marked "foot" are placed before </body>.
+      Paste the full snippet exactly as provided by your ad network, including
+      its script tags. Blocks marked "head" are placed inside the page head;
+      blocks marked "foot" are placed before the closing body tag.
     section_counter: "{enabled} of {total} enabled"
     empty: No script blocks yet. Click "Add block" to create one.
     add_button: Add Block
@@ -25,18 +25,18 @@ stezkoy-audex:
     modal_title_edit: Edit Script Block
     name_label: Block Name
     name_placeholder: e.g. AdSense header
-    name_help: A short internal label. HTML characters are not allowed.
+    name_help: A short internal label. Angle brackets and double dashes are not allowed.
     position_label: Placement
-    position_help: "head — inside <head>. foot — before the closing </body>."
-    position_head: "<head>"
-    position_foot: "End of body (</body>)"
+    position_help: "head — inside the page head. foot — before the closing body tag."
+    position_head: Page head
+    position_foot: End of body
     enabled_switch: Enabled
     enabled_switch_help: Toggle to turn this block on or off.
     code_label: Script Code
-    code_placeholder: "<script async src=\"https://example.com/ad.js\"></script>"
     code_help: >-
-      Pasted verbatim into the page. Contains a full snippet from your ad
-      network. Inside JavaScript strings write </script> as <\/script>.
+      Pasted verbatim into the page. Use the full snippet from your ad network.
+      Inside JavaScript strings, escape the closing script tag with a backslash
+      before the slash.
 
     exclusions_section: Exclusions
     exclusions_section_help: >-
@@ -46,7 +46,7 @@ stezkoy-audex:
     groups_help: Members of these groups will not receive ad scripts.
     groups_empty: No groups available.
     users_label: Excluded Users
-    users_help: These specific users will not receive ad scripts, regardless of their groups.
+    users_help: These specific users will not receive ad scripts regardless of their groups.
     users_add_button: Add Users
     users_empty: No users excluded.
     users_search_placeholder: Search users…
@@ -59,7 +59,7 @@ stezkoy-audex:
     error_too_many: "Too many script blocks — the limit is {count}."
     error_block_json: "Block {block} is malformed."
     error_name: "Block {block}: the name must be a string of up to 100 characters."
-    error_name_html: "Block {block}: the name must not contain <, > or -- characters."
+    error_name_html: "Block {block}: the name must not contain angle brackets or double dashes."
     error_code_empty: "Block {block}: the script code must not be empty."
     error_code_too_long: "Block {block}: the code exceeds the limit of {max} bytes."
     error_position: "Block {block}: the placement must be \"head\" or \"foot\"."

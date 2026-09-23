@@ -6,6 +6,11 @@ import extractText from 'flarum/common/utils/extractText';
 
 const PREFIX = 'stezkoy-audex.admin.';
 
+// Sample snippet shown as the textarea placeholder. Intentionally hardcoded
+// (not a translation): the v2 translation parser treats raw tags as markup
+// and would choke on the unbalanced/attributed tags in the sample.
+const CODE_PLACEHOLDER = '<script async src="https://example.com/ad.js"></script>';
+
 export default class ScriptModal extends Modal {
   oninit(vnode) {
     super.oninit(vnode);
@@ -70,7 +75,7 @@ export default class ScriptModal extends Modal {
           m('.Form-group', [
             m('label', app.translator.trans(PREFIX + 'code_label')),
             m('textarea.FormControl.AudexScriptForm-code', {
-              placeholder: extractText(app.translator.trans(PREFIX + 'code_placeholder')),
+              placeholder: CODE_PLACEHOLDER,
               rows: 10,
               spellcheck: false,
               value: this.code,
