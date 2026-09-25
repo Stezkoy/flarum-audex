@@ -16,15 +16,11 @@ use Flarum\Http\RequestUtil;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
- * Injects ad script blocks into the forum <head> / before </body>,
- * skipping users and groups configured as excluded.
+ * Injects script blocks into the forum <head> / before </body>, skipping
+ * users and groups configured as excluded — they never receive the code.
  *
- * Excluded users never receive the scripts at all — nothing is loaded,
- * nothing is executed in their browser.
- *
- * Also publishes payload flags used by the optional forum-widgets-core
- * integration ("widget" placement): the widget is disabled client-side for
- * excluded users, and the widget content itself is served by
+ * Also publishes payload flags for the optional forum-widgets-core
+ * integration; the widget content itself is served by
  * WidgetContentController with the same exclusion rules.
  */
 class AddAdScripts
@@ -39,8 +35,7 @@ class AddAdScripts
         $actor = RequestUtil::getActor($request);
         $excluded = $this->settings->isExcluded($actor);
 
-        // Flags for the forum-widgets-core integration. Cheap scalars; the
-        // widget JS reads them regardless of whether any script is configured.
+        // Flags for the forum-widgets-core integration (see registerWidget).
         $widgetBlocks = $excluded ? [] : $this->settings->widgetBlocks();
 
         $document->payload['stezkoy-audex.excluded'] = $excluded;
@@ -73,9 +68,8 @@ class AddAdScripts
                 $code = '<script>' . $code . '</script>';
             }
 
-            // The code is inserted verbatim (the admin is a trusted role, just
-            // like with Flarum's own custom-header feature). Only the comment
-            // label is escaped so it can never break out of the HTML comment.
+            // The code is inserted verbatim — only the comment label is
+            // escaped so it cannot break out of the HTML comment.
             $html = '<!-- audex: ' . e($script['name']) . ' -->' . "\n" . $code;
 
             if ($script['position'] === 'foot') {

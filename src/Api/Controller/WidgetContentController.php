@@ -12,7 +12,6 @@
 namespace Stezkoy\FlarumAudex\Api\Controller;
 
 use Flarum\Http\RequestUtil;
-use Flarum\Settings\SettingsRepositoryInterface;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -20,17 +19,12 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Stezkoy\FlarumAudex\SettingsProvider;
 
 /**
- * Serves the blocks placed as "widget" for the Audex forum-widgets-core
- * integration.
+ * Serves the blocks placed as "widget" for the forum-widgets-core
+ * integration. Excluded users receive an empty list — the same rule as the
+ * head/foot injection, enforced server-side.
  *
- * Excluded users and members of excluded groups receive an empty list — the
- * same rule as the head/foot injection, enforced server-side so the code is
- * never even delivered to them.
- *
- * The response is cached privately per browser (never shared/public: the
- * content differs per actor). The Audex widget only requests it for
- * non-excluded users anyway; the rev query param (from the page payload)
- * busts the cache when an admin edits the blocks.
+ * Cached privately per browser (content differs per actor); the rev query
+ * param busts the cache when an admin edits the blocks.
  */
 class WidgetContentController implements RequestHandlerInterface
 {

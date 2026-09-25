@@ -1,6 +1,6 @@
 /**
  * Builds the Audex widget class on top of fof's Widget base (resolved at
- * initializer time via the registry — same approach as linkrobins/html-widget).
+ * initializer time via the registry).
  *
  * Content comes from the Audex endpoint, which serves the blocks marked with
  * the "widget" placement and enforces the same per-user/group exclusions as

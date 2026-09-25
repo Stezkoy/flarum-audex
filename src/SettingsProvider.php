@@ -20,12 +20,20 @@ class SettingsProvider
         protected readonly SettingsRepositoryInterface $settings,
     ) {}
 
+    protected ?array $scripts = null;
+
     /**
      * @return array<int, array{name: string, code: string, position: string, enabled: bool}>
      */
     public function scripts(): array
     {
-        return Audex::parseScripts($this->settings->get(Audex::SCRIPTS));
+        // Parsed once per request: AddAdScripts reads scripts() and
+        // widgetBlocks(), which would otherwise decode the JSON twice.
+        if ($this->scripts === null) {
+            $this->scripts = Audex::parseScripts($this->settings->get(Audex::SCRIPTS));
+        }
+
+        return $this->scripts;
     }
 
     /**
@@ -72,6 +80,9 @@ class SettingsProvider
             return true;
         }
 
+        // The groups relation is already loaded on this actor instance: the
+        // forum document (built before content callbacks) includes actor.groups
+        // on the same object, so no extra query happens here.
         $actorGroupIds = $actor->groups->pluck('id')->all();
 
         return count(array_intersect($actorGroupIds, $this->excludedGroupIds())) > 0;

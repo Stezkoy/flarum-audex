@@ -51,10 +51,12 @@ export default class ConfirmModal extends Modal {
 
     this.loading = true;
 
-    Promise.resolve(this.attrs.onconfirm && this.attrs.onconfirm()).then(() => {
-      this.loading = false;
-      m.redraw();
-      this.hide();
-    });
+    Promise.resolve(this.attrs.onconfirm && this.attrs.onconfirm())
+      .catch(() => {})
+      .then(() => {
+        this.loading = false;
+        m.redraw();
+        this.hide();
+      });
   }
 }

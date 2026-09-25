@@ -1,16 +1,13 @@
 import makeAudexWidget from './components/makeAudexWidget';
 
 /**
- * Registers the Audex widget with fof/forum-widgets-core. Called from the
- * forum initializer.
+ * Registers the Audex widget with fof/forum-widgets-core. Called from both
+ * the forum and admin initializers (the editor palette reads widgets
+ * registered in the admin bundle).
  *
- * Hard runtime guard: fof/forum-widgets-core is an optional dependency, so
- * when it is not enabled (or its widget manager is not booted yet) this stays
- * completely silent and the extension keeps working as head/foot only.
- *
- * fof's Widget base class and Widgets extender are resolved at initializer
- * time via the registry rather than top-level `ext:` imports, mirroring the
- * approach of linkrobins/html-widget.
+ * Runtime guard: fof/forum-widgets-core is an optional dependency — when it
+ * is not enabled (or its widget manager is not booted yet) this stays silent
+ * and the extension keeps working as head/foot only.
  */
 export default function registerWidget(app) {
   const Widget = flarum.reg.get('fof-forum-widgets-core', 'common/components/Widget');
